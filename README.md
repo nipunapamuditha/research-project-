@@ -1,4 +1,3 @@
-
 Main objective
 
 The primary objective of the project is to 
@@ -51,6 +50,17 @@ without the skilled experience or knowledge about crops or agriculture.
     
     Member 3 - IT         T.D.D Senadheera 
     
+Agricultural decisions made by humans a few generations ago were accurate because data was passed down through the generations. 
+However, in current times, professions are rarely handed from one generation to generation. As a result, information does not pass
+down over generations, and collective agricultural decisions become less reliable. In agriculture, once a decision is made, it is
+impossible to reverse it in a short period of time, and the decisions will result in profit or loss for a long time.
+
+Choosing a crop to grow is one of the most important decisions in agriculture. As previously stated, this factor can determine 
+whether the plantation is profitable or not. This necessitates a thorough examination of the environment, which includes soil, water, 
+weather, longitude, latitude, air, height, angles, and other factors. Once a decision has been made, it is also necessary to maintain 
+the required circumstances throughout the crop’s lifecycle. This necessitates a continuous analysis of various attributes and
+cross-referencing them with the needed condition. It takes time for humans to perform this, and it is costly to use human labor. 
+Hundreds of samples are required to obtain correct results and making decisions without accurate data leads to poor decisions.
     
     Member 4 - IT         U.L.D.V.R Gunasinghe 
     
@@ -80,6 +90,7 @@ Individual Objectives
     
     Member 3 - IT         T.D.D Senadheera 
     
+    The main objective of this component is to build a robot that can travel around the land or field without harming vegetation.
     
     Member 4 - IT         U.L.D.V.R Gunasinghe 
     
