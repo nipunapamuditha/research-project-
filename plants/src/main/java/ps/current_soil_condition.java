@@ -285,7 +285,7 @@ public class current_soil_condition {
 			soil_phoisphers_70_110=1;
 		}
 		
-		// distance from equator 
+		// distance from equator ./.;l
 		
 		if((0 < distance_from_eq)&&(distance_from_eq < 1000))
 		{
