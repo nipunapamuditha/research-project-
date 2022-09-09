@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +38,7 @@ public class All_main_functions {
 		 int soil_phoisphers = 0;
 		 int distance_from_eq = 0;
 		 
+		 String plaint_image=null;
 		 //plant condition variables for getting initial requirements 
 		 
 		 String crop_name = null;
@@ -98,10 +100,10 @@ public class All_main_functions {
 
 		// mysql login credentials 
 		
-		
+		//zoro
 		String username="root";
 		String password="#Karunarathna2044";
-		String url="jdbc:mysql://findlaptop.cjhrwevkqni3.us-east-2.rds.amazonaws.com:3306";
+		String url="jdbc:mysql://127.0.0.1:3306/plant_suggestion";
 		String get_current_env = "select * from plant_suggestion.current_condition";
 		
 		try {
@@ -171,7 +173,7 @@ public class All_main_functions {
 			
 			
 			
-			for ( plant_count = 1; plant_count < 4; plant_count++) {
+			for ( plant_count = 1; plant_count < 6; plant_count++) {
 			
 				String get_plants_required_conditions  = "select * from plant_suggestion.plants where ID='"+plant_count+"'";
 				plant_score =0;
@@ -193,17 +195,25 @@ public class All_main_functions {
 			if(plant_veriables.next())
 			{         
 				System.out.println("waaaaa ttttaaaa ffaaaak ave naaaathooooooooo 1 ");
-				  crop_name=plant_veriables.getString(1);
+				  crop_name=plant_veriables.getString(2);
+				  
+				  
+				  //get image and and send it to zoro feild in binary table 
+				  
+				  plaint_image = plant_veriables.getString(25);
+				  
 				  System.out.println("                  crop name 2          ");
 				  System.out.println(crop_name);
 				  System.out.println("   name over      waaaaa ttttaaaa ffaaaak ave naaaathooooooooo 2");
 				
-				  himidity_low=Integer.parseInt(plant_veriables.getString(2));
-				  himidity_high=Integer.parseInt(plant_veriables.getString(3));
+				  himidity_low=Integer.parseInt(plant_veriables.getString(3));
+				  himidity_high=Integer.parseInt(plant_veriables.getString(4));
 				  
 				  System.out.println("himidity 2");
 				  System.out.println(himidity_low);
 				  System.out.println("himidity 3");
+				  System.out.println(himidity_high);
+				  System.out.println("himidity 4");
 				  // update binary table 
 				   
 				  if((10 < himidity_low)&&(himidity_high < 35))
@@ -257,8 +267,8 @@ public class All_main_functions {
 				
 					System.out.println("\n total humidity score is "+plant_humidity+"\n");
 				  
-				  temp_low=Integer.parseInt(plant_veriables.getString(4));
-				  temp_high=Integer.parseInt(plant_veriables.getString(5));
+				  temp_low=Integer.parseInt(plant_veriables.getString(5));
+				  temp_high=Integer.parseInt(plant_veriables.getString(6));
 				  
 				//   update binary table  bitxx
 				  
@@ -305,9 +315,9 @@ public class All_main_functions {
 						{
 							plant_temp =  3;
 						}
-				  
-				  lux_low=Integer.parseInt(plant_veriables.getString(6));
-				  lux_high=Integer.parseInt(plant_veriables.getString(7));
+					 System.out.println("\n total temp score is "+plant_temp+"\n");
+				  lux_low=Integer.parseInt(plant_veriables.getString(7));
+				  lux_high=Integer.parseInt(plant_veriables.getString(8));
 				  
 				// update binary table 
 				  
@@ -358,8 +368,8 @@ public class All_main_functions {
 							plant_lux =  3;
 						}
 					 
-				  height_low=Integer.parseInt(plant_veriables.getString(7));
-				  height_high=Integer.parseInt(plant_veriables.getString(8));
+				  height_low=Integer.parseInt(plant_veriables.getString(9));
+				  height_high=Integer.parseInt(plant_veriables.getString(10));
 				  
 				// update binary table 
 				  
@@ -407,8 +417,8 @@ public class All_main_functions {
 							plant_height =  3;
 						}
 					 
-				  soil_ec_low=Integer.parseInt(plant_veriables.getString(9));
-				  soil_ec_high=Integer.parseInt(plant_veriables.getString(10));
+				  soil_ec_low=Integer.parseInt(plant_veriables.getString(11));
+				  soil_ec_high=Integer.parseInt(plant_veriables.getString(12));
 				  
 				// update binary table 
 				  if((110 < soil_ec_low)&&(soil_ec_high < 200))
@@ -456,8 +466,8 @@ public class All_main_functions {
 				  
 				  
 				  
-				  soil_moisture_low=Integer.parseInt(plant_veriables.getString(11));
-				  soil_moisture_high=Integer.parseInt(plant_veriables.getString(12));
+				  soil_moisture_low=Integer.parseInt(plant_veriables.getString(13));
+				  soil_moisture_high=Integer.parseInt(plant_veriables.getString(14));
 				  
 				  
 				// update binary table 
@@ -507,8 +517,8 @@ public class All_main_functions {
 						}
 					 
 					 
-				  ph_low=Integer.parseInt(plant_veriables.getString(13));
-				  ph_high=Integer.parseInt(plant_veriables.getString(14));
+				  ph_low=Integer.parseInt(plant_veriables.getString(15));
+				  ph_high=Integer.parseInt(plant_veriables.getString(16));
 				  
 				  
 				// update binary table 
@@ -557,8 +567,8 @@ public class All_main_functions {
 							plant_ph = 3 ;
 						}
 				  
-				  soil_potassium_low=Integer.parseInt(plant_veriables.getString(15));
-				  soil_potassium_high=Integer.parseInt(plant_veriables.getString(16));
+				  soil_potassium_low=Integer.parseInt(plant_veriables.getString(17));
+				  soil_potassium_high=Integer.parseInt(plant_veriables.getString(18));
 				  
 				// update binary table 
 				  
@@ -606,8 +616,8 @@ public class All_main_functions {
 					{
 						plant_potassium = 3;
 					}
-				  soil_nitrogen_low=Integer.parseInt(plant_veriables.getString(17));
-				  soil_nitrogen_high=Integer.parseInt(plant_veriables.getString(18));
+				  soil_nitrogen_low=Integer.parseInt(plant_veriables.getString(19));
+				  soil_nitrogen_high=Integer.parseInt(plant_veriables.getString(20));
 				  
 				  if((10 < soil_nitrogen_low)&&(soil_nitrogen_high < 25))
 					{
@@ -652,8 +662,8 @@ public class All_main_functions {
 						plant_nitrogen =  3  ;
 					}
 					
-				  soil_phoisphers_low=Integer.parseInt(plant_veriables.getString(19));
-				  soil_phoisphers_high=Integer.parseInt(plant_veriables.getString(20));
+				  soil_phoisphers_low=Integer.parseInt(plant_veriables.getString(21));
+				  soil_phoisphers_high=Integer.parseInt(plant_veriables.getString(22));
 				  
 				// update binary table 
 				  
@@ -701,8 +711,8 @@ public class All_main_functions {
 							plant_phosphers =  3 ;
 						}
 				  
-				  distance_from_eq_low=Integer.parseInt(plant_veriables.getString(21));
-				  distance_from_eq_high=Integer.parseInt(plant_veriables.getString(22));
+				  distance_from_eq_low=Integer.parseInt(plant_veriables.getString(23));
+				  distance_from_eq_high=Integer.parseInt(plant_veriables.getString(24));
 				  
 				 // add data to plants binary table 
 				  
@@ -748,6 +758,7 @@ public class All_main_functions {
 					if((2000 < distance_from_eq_low)&&(distance_from_eq_high < 4000))
 					{
 						plant_dis_eq =  3 ;
+						
 					}
 			
 			//////////////////////////// Giving scores to plants //////////////////////////////////////////////////////
@@ -761,6 +772,7 @@ public class All_main_functions {
 						 if((plant_humidity == 8) || (plant_humidity == 12)|| (plant_humidity == 14)|| (plant_humidity == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 1");
 						 }
 					}
 					
@@ -769,6 +781,7 @@ public class All_main_functions {
 						if((plant_humidity == 4) || (plant_humidity == 6)|| (plant_humidity == 7)|| (plant_humidity == 12)|| (plant_humidity == 14)|| (plant_humidity == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 2");
 						 }
 					}
 					
@@ -777,6 +790,7 @@ public class All_main_functions {
 						if((plant_humidity == 2) || (plant_humidity == 3)|| (plant_humidity == 6)|| (plant_humidity == 7)|| (plant_humidity == 14)|| (plant_humidity == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 3");
 						 }
 					}
 					
@@ -785,6 +799,7 @@ public class All_main_functions {
 						 if((plant_humidity == 1) || (plant_humidity == 3)|| (plant_humidity == 7)|| (plant_humidity == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 4");
 						 }
 					}
 					
@@ -799,6 +814,7 @@ public class All_main_functions {
 						 if((plant_temp == 8) || (plant_temp == 12)|| (plant_temp == 14)|| (plant_temp == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 5");
 						 }
 					}
 					
@@ -806,7 +822,9 @@ public class All_main_functions {
 					{
 						if((plant_temp == 4) || (plant_temp == 6)|| (plant_temp == 7)|| (plant_temp == 12)|| (plant_temp == 14)|| (plant_temp == 15))
 						 {
-							plant_score++;
+							plant_score++; 
+							System.out.println("im in one calculation function 6");
+				
 						 }
 					}
 					
@@ -815,6 +833,7 @@ public class All_main_functions {
 						if((plant_temp == 2) || (plant_temp == 3)|| (plant_temp == 6)|| (plant_temp == 7)|| (plant_temp == 14)|| (plant_temp == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 7");
 						 }
 					}
 					
@@ -822,7 +841,8 @@ public class All_main_functions {
 					{
 						 if((plant_temp == 1) || (plant_temp == 3)|| (plant_temp == 7)|| (plant_temp == 15))
 						 {
-							 plant_score++;
+							 plant_score++; 
+							 System.out.println("im in one calculation function 8");
 						 }
 					}
 			
@@ -833,7 +853,8 @@ public class All_main_functions {
 					{
 						 if((plant_lux == 8) || (plant_lux == 12)|| (plant_lux == 14)|| (plant_lux == 15))
 						 {
-							 plant_score++;
+							 plant_score++;  
+							 System.out.println("im in one calculation function 9");
 						 }
 					}
 					
@@ -841,7 +862,8 @@ public class All_main_functions {
 					{
 						if((plant_lux == 4) || (plant_lux == 6)|| (plant_lux == 7)|| (plant_lux == 12)|| (plant_lux == 14)|| (plant_lux == 15))
 						 {
-							plant_score++;
+							plant_score++; 
+							System.out.println("im in one calculation function 10");
 						 }
 					}
 					
@@ -850,6 +872,7 @@ public class All_main_functions {
 						if((plant_lux == 2) || (plant_lux == 3)|| (plant_lux == 6)|| (plant_lux == 7)|| (plant_lux == 14)|| (plant_lux == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 11");
 						 }
 					}
 					
@@ -858,6 +881,7 @@ public class All_main_functions {
 						 if((plant_lux == 1) || (plant_lux == 3)|| (plant_lux == 7)|| (plant_lux == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 12");
 						 }
 					}
 					
@@ -869,6 +893,7 @@ public class All_main_functions {
 						 if((plant_height == 8) || (plant_height == 12)|| (plant_height == 14)|| (plant_height == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 13");
 						 }
 					}
 					
@@ -877,6 +902,7 @@ public class All_main_functions {
 						if((plant_height == 4) || (plant_height == 6)|| (plant_height == 7)|| (plant_height == 12)|| (plant_height == 14)|| (plant_height == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 14");
 						 }
 					}
 					
@@ -885,6 +911,7 @@ public class All_main_functions {
 						if((plant_height == 2) || (plant_height == 3)|| (plant_height == 6)|| (plant_height == 7)|| (plant_height == 14)|| (plant_height == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 15");
 						 }
 					}
 					
@@ -893,6 +920,7 @@ public class All_main_functions {
 						 if((plant_height == 1) || (plant_height == 3)|| (plant_height == 7)|| (plant_height == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 16");
 						 }
 					}
 					
@@ -903,6 +931,7 @@ public class All_main_functions {
 						 if((plant_soil_ec == 8) || (plant_soil_ec == 12)|| (plant_soil_ec == 14)|| (plant_soil_ec == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 17");
 						 }
 					}
 					
@@ -911,6 +940,7 @@ public class All_main_functions {
 						if((plant_soil_ec == 4) || (plant_soil_ec == 6)|| (plant_soil_ec == 7)|| (plant_soil_ec == 12)|| (plant_soil_ec == 14)|| (plant_soil_ec == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 18");
 						 }
 					}
 					
@@ -919,6 +949,7 @@ public class All_main_functions {
 						if((plant_soil_ec == 2) || (plant_soil_ec == 3)|| (plant_soil_ec == 6)|| (plant_soil_ec == 7)|| (plant_soil_ec == 14)|| (plant_soil_ec == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 19");
 						 }
 					}
 					
@@ -938,6 +969,7 @@ public class All_main_functions {
 						 if((plant_moisture == 8) || (plant_moisture == 12)|| (plant_moisture == 14)|| (plant_moisture == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 20");
 						 }
 					}
 					
@@ -946,6 +978,7 @@ public class All_main_functions {
 						if((plant_moisture == 4) || (plant_moisture == 6)|| (plant_moisture == 7)|| (plant_moisture == 12)|| (plant_moisture == 14)|| (plant_moisture == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 21");
 						 }
 					}
 					
@@ -954,6 +987,7 @@ public class All_main_functions {
 						if((plant_moisture == 2) || (plant_moisture == 3)|| (plant_moisture == 6)|| (plant_moisture == 7)|| (plant_moisture == 14)|| (plant_moisture == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 22");
 						 }
 					}
 					
@@ -962,6 +996,7 @@ public class All_main_functions {
 						 if((plant_moisture == 1) || (plant_moisture == 3)|| (plant_moisture == 7)|| (plant_moisture == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 23");
 						 }
 					}
 					
@@ -972,6 +1007,7 @@ public class All_main_functions {
 						 if((plant_ph == 8) || (plant_ph == 12)|| (plant_ph == 14)|| (plant_ph == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 24");
 						 }
 					}
 					
@@ -980,6 +1016,7 @@ public class All_main_functions {
 						if((plant_ph == 4) || (plant_ph == 6)|| (plant_ph == 7)|| (plant_ph == 12)|| (plant_ph == 14)|| (plant_ph == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 25");
 						 }
 					}
 					
@@ -988,6 +1025,7 @@ public class All_main_functions {
 						if((plant_ph == 2) || (plant_ph == 3)|| (plant_ph == 6)|| (plant_ph == 7)|| (plant_ph == 14)|| (plant_ph == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 26");
 						 }
 					}
 					
@@ -996,6 +1034,7 @@ public class All_main_functions {
 						 if((plant_ph == 1) || (plant_ph == 3)|| (plant_ph == 7)|| (plant_ph == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 27");
 						 }
 					}
 			
@@ -1006,6 +1045,7 @@ public class All_main_functions {
 						 if((plant_potassium == 8) || (plant_potassium == 12)|| (plant_potassium == 14)|| (plant_potassium == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 28");
 						 }
 					}
 					
@@ -1014,6 +1054,7 @@ public class All_main_functions {
 						if((plant_potassium == 4) || (plant_potassium == 6)|| (plant_potassium == 7)|| (plant_potassium == 12)|| (plant_potassium == 14)|| (plant_potassium == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function 29");
 						 }
 					}
 					
@@ -1022,6 +1063,7 @@ public class All_main_functions {
 						if((plant_potassium == 2) || (plant_potassium == 3)|| (plant_potassium == 6)|| (plant_potassium == 7)|| (plant_potassium == 14)|| (plant_potassium == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function 30");
 						 }
 					}
 					
@@ -1030,6 +1072,7 @@ public class All_main_functions {
 						 if((plant_potassium == 1) || (plant_potassium == 3)|| (plant_potassium == 7)|| (plant_potassium == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function 31");
 						 }
 					}
 					
@@ -1041,6 +1084,7 @@ public class All_main_functions {
 						 if((plant_nitrogen == 8) || (plant_nitrogen == 12)|| (plant_nitrogen == 14)|| (plant_nitrogen == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1049,6 +1093,7 @@ public class All_main_functions {
 						if((plant_nitrogen == 4) || (plant_nitrogen == 6)|| (plant_nitrogen == 7)|| (plant_nitrogen == 12)|| (plant_nitrogen == 14)|| (plant_nitrogen == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1057,6 +1102,7 @@ public class All_main_functions {
 						if((plant_nitrogen == 2) || (plant_nitrogen == 3)|| (plant_nitrogen == 6)|| (plant_nitrogen == 7)|| (plant_nitrogen == 14)|| (plant_nitrogen == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1065,6 +1111,7 @@ public class All_main_functions {
 						 if((plant_nitrogen == 1) || (plant_nitrogen == 3)|| (plant_nitrogen == 7)|| (plant_nitrogen == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1075,6 +1122,7 @@ public class All_main_functions {
 						 if((plant_phosphers == 8) || (plant_phosphers == 12)|| (plant_phosphers == 14)|| (plant_phosphers == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1083,6 +1131,7 @@ public class All_main_functions {
 						if((plant_phosphers == 4) || (plant_phosphers == 6)|| (plant_phosphers == 7)|| (plant_phosphers == 12)|| (plant_phosphers == 14)|| (plant_phosphers == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1091,6 +1140,7 @@ public class All_main_functions {
 						if((plant_phosphers == 2) || (plant_phosphers == 3)|| (plant_phosphers == 6)|| (plant_phosphers == 7)|| (plant_phosphers == 14)|| (plant_phosphers == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1099,6 +1149,7 @@ public class All_main_functions {
 						 if((plant_phosphers == 1) || (plant_phosphers == 3)|| (plant_phosphers == 7)|| (plant_phosphers == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1109,6 +1160,7 @@ public class All_main_functions {
 						 if((plant_dis_eq == 8) || (plant_dis_eq == 12)|| (plant_dis_eq == 14)|| (plant_dis_eq == 15))
 						 {
 							 plant_score++;
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1117,6 +1169,7 @@ public class All_main_functions {
 						if((plant_dis_eq == 4) || (plant_dis_eq == 6)|| (plant_dis_eq == 7)|| (plant_dis_eq == 12)|| (plant_dis_eq == 14)|| (plant_dis_eq == 15))
 						 {
 							plant_score++;
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1125,6 +1178,7 @@ public class All_main_functions {
 						if((plant_dis_eq == 2) || (plant_dis_eq == 3)|| (plant_dis_eq == 6)|| (plant_dis_eq == 7)|| (plant_dis_eq == 14)|| (plant_dis_eq == 15))
 						 {
 							plant_score++; 
+							System.out.println("im in one calculation function");
 						 }
 					}
 					
@@ -1133,13 +1187,18 @@ public class All_main_functions {
 						 if((plant_dis_eq == 1) || (plant_dis_eq == 3)|| (plant_dis_eq == 7)|| (plant_dis_eq == 15))
 						 {
 							 plant_score++;
+							 
+							 System.out.println("im in one calculation function");
 						 }
 					}
 					
+					System.out.println("scorreeeeeeeeeeeeeee isssssssssssssssssss");
+					System.out.println(plant_score);
+					System.out.println("thsis issssovvveerrrr");
 			////////////////////////////////giving scors finished //////////////////////////////////////////////////////
 			} //if condition finish lkine 
 			
-			String plants_binary  = "INSERT INTO plant_suggestion.plants_binary VALUES ('"+crop_name+"','"+plant_humidity+"','"+plant_temp+"','"+plant_lux+"','"+plant_height+"','"+plant_soil_ec+"','"+plant_moisture+"','"+plant_ph+"','"+plant_potassium+"','"+plant_nitrogen+"','"+plant_phosphers+"','"+plant_dis_eq+"','"+plant_score+"')";
+			String plants_binary  = "INSERT INTO plant_suggestion.plants_binary VALUES ('"+crop_name+"','"+plant_humidity+"','"+plant_temp+"','"+plant_lux+"','"+plant_height+"','"+plant_soil_ec+"','"+plant_moisture+"','"+plant_ph+"','"+plant_potassium+"','"+plant_nitrogen+"','"+plant_phosphers+"','"+plant_dis_eq+"','"+plant_score+"','"+plaint_image+"')";
 			Statement update_plant_binary= con2.createStatement();
 			
 			update_plant_binary.executeUpdate(plants_binary);
@@ -1153,12 +1212,182 @@ public class All_main_functions {
 
 		
 	}
+	
+	// semd sugestions to serverlet 
 		
-	public static void compare_plants()
+	public static List<plant_details> get_suggestions()
 	{
-		// get all the values from plants binary table and display them in percentages 
+            
+		System.out.println("im in thegest suggestions fucking function");
+		
+		String username="root";
+		String password="#Karunarathna2044";
+		String url="jdbc:mysql://127.0.0.1:3306/plant_suggestion";
+		
+		
+		String del_bin_values = "TRUNCATE TABLE plant_suggestion.plants_binary;";
+		   
+		
+		ArrayList<plant_details> bestlist=new ArrayList<>();
+		
+		String plant_name=null;
+		int score=0;
+		String image_link=null;
+		String anything=null;
+		
+		String plant_name1=null;
+		int score1=0;
+		String image_link1=null;
+		String anything1=null;
+		
+		String plant_name2=null;
+		int score2=0;
+		String image_link2=null;
+		String anything2=null;
+		
+		String plant_name3=null;
+		int score3=0;
+		String image_link3=null;
+		String anything3=null;
+		
+		String plant_name4=null;
+		int score4=0;
+		String image_link4=null;
+		String anything4=null;
+		
+		String plant_name5=null;
+		int score5=0;
+		String image_link5=null;
+		String anything5=null;
+		
+		
+		
+		
+		
+		
+		
+		try {
+			
+			System.out.println("try");
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con1=DriverManager.getConnection(url, username, password);
+			Statement get_current_env_veriables= con1.createStatement();
+			
+			for(int cn=1;cn<6;cn++)
+			{
+				String get_best_plants = "SELECT  * FROM plant_suggestion.plants_binary WHERE score = (SELECT MAX(score) FROM plant_suggestion.plants_binary);";
+				
+			ResultSet best5= get_current_env_veriables.executeQuery(get_best_plants);
+			
+			if(best5.next())
+			{
+				
+				  
+				  plant_name=best5.getString(1);
+				  
+				
+				  
+				  score=Integer.parseInt(best5.getString(13));
+				//  plant_name=best5.getString(14);
+				  
+				  image_link=best5.getString(14);
+			      
+				 
+			}
+			
+			/// get vales and store them in veriables 
+			
+			if(cn==1)
+			{
+				 plant_name1=plant_name;
+				 score1=score;
+				 image_link1=image_link;
+				anything1="cz";
+				
+				 System.out.println("crop name issss ssss ssss sss");
+				  System.out.println(plant_name1);
+			}
+			
+			if(cn==2)
+			{
+				 plant_name2=plant_name;
+				 score2=score;
+				 image_link2=image_link;
+				anything2="cz";
+				System.out.println("crop name issss ssss ssss sss");
+				  System.out.println(plant_name2);
+			}
+			if(cn==3)
+			{
+				 plant_name3=plant_name;
+				 score3=score;
+				 image_link3=image_link;
+				anything3="cz";
+				System.out.println("crop name issss ssss ssss sss");
+				  System.out.println(plant_name3);
+			}
+			if(cn==4)
+			{
+				 plant_name4=plant_name;
+				 score4=score;
+				 image_link4=image_link;
+				anything4="cz";
+				System.out.println("crop name issss ssss ssss sss");
+				  System.out.println(plant_name4);
+			}
+			if(cn==5)
+			{
+				 plant_name5=plant_name;
+				 score5=score;
+				 image_link5=image_link;
+				anything5="cz";
+				System.out.println("crop name issss ssss ssss sss");
+				  System.out.println(plant_name5);
+			}
+			
+			
+			// sql delete maximum valued one 
+			
+			String delete_max_row = "DELETE FROM plant_suggestion.plants_binary WHERE name='"+plant_name+"'";
+			
+			Statement delete_max_plant= con1.createStatement();
+			delete_max_plant.executeUpdate(delete_max_row);
+			
+			
+			
+			}// end of for loop	AND THIS IS DELETE TABLE FUCKING FUNCTION
+			
+			// Statement deel_bin_table= con1.createStatement();
+		//	deel_bin_table.executeUpdate(del_bin_values);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		plant_details p1 = new plant_details(plant_name1, image_link1, score1, anything1);
+		plant_details p2 = new plant_details(plant_name2, image_link2, score2, anything2);
+		plant_details p3 = new plant_details(plant_name3, image_link3, score3, anything3);
+		plant_details p4 = new plant_details(plant_name4, image_link4, score4, anything4);
+		plant_details p5 = new plant_details(plant_name5, image_link5, score5, anything5);
+		
+	    bestlist.add(p1);
+	    bestlist.add(p2);
+	    bestlist.add(p3);
+	    bestlist.add(p4);
+	    bestlist.add(p5);
+	    
+	   
+	    
+		
+		return bestlist;
+		
+		// get the highest scord plant details from database and delete that record then get highest again likewise get best 4 plants which are most sutiable for the location 
 		
 	}
+	
+	// this functions displays comparison bar chart of plants required conditions and current enviroment conditions 
 	
 	
 	
