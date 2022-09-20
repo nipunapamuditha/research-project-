@@ -18,6 +18,8 @@
 		<url-pattern>/log</url-pattern>
 	</servlet-mapping>
 	
+	
+	
 		
 	<servlet>
 		<servlet-name>info_srv</servlet-name>
@@ -27,6 +29,31 @@
 		<servlet-name>info_srv</servlet-name>
 		<url-pattern>/info</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>manual_inputs_srv</servlet-name>
+		<servlet-class>ps.manual_inputs_srv</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>manual_inputs_srv</servlet-name>
+		<url-pattern>/manual_in_serv</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>add_crops_srv</servlet-name>
+		<servlet-class>ps.add_crops_srv</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>add_crops_srv</servlet-name>
+		<url-pattern>/add_crops_serv</url-pattern>
+	</servlet-mapping>
+	
 	
 
 	</web-app>

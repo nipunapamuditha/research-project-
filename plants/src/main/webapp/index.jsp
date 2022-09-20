@@ -18,8 +18,18 @@
 			      
 			<form action="log" method="post">
 	 		  
-			  <input type="submit" name="submit" value="Submit">
+			  <input type="submit" name="submit" value="use automated inputs">
 			</form>
+			
+			<form action="manual_inputs.jsp">
+    <input type="submit" value="to use manual inputs" />
+</form>
+
+
+<form action="add_crops.jsp">
+    <input type="submit" value="add crops to database" />
+</form>
+			
 			
 			</body>
 			</html>

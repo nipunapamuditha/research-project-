@@ -21,7 +21,7 @@ public class info_srv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 	
